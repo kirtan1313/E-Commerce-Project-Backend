@@ -13,7 +13,7 @@ const multer = require('./Multer/multer.js')
 
 
 app.use(express.json());
-// app.use('/uplodFile', express.static(path.join(__dirname, 'uplodFile')));
+app.use('/uplodFile', express.static(path.join(__dirname, 'uplodFile')));
 app.use('/uplodFile', express.static('uplodFile'));
 
 app.use(bodyparser.json());
