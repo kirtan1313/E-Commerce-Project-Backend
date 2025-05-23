@@ -12,15 +12,15 @@ const GetProdct = async (req, res) => {
 
 
 const GetProductsByCategory = async (req, res) => {
-  try {
-    const { category } = req.query;
-    const filter = category ? { category } : {}; 
-    const products = await ProSchema.find(filter);
-    res.status(200).json(products); 
-  } catch (err) {
-    console.error("Error fetching products:", err);
-    res.status(500).json({ error: "Something went wrong" });
-  }
+    try {
+        const { category } = req.query;
+        const filter = category ? { category } : {};
+        const products = await ProSchema.find(filter);
+        res.status(200).json(products);
+    } catch (err) {
+        console.error("Error fetching products:", err);
+        res.status(500).json({ error: "Something went wrong" });
+    }
 };
 
 
@@ -56,11 +56,35 @@ const ProductId = async (req, res) => {
 
 const UpdateProduct = async (req, res) => {
     try {
+        console.log("Request Params:", req.params);
+        console.log("Request Body:", req.body);
+        console.log("Uploaded File:", req.file);
 
         const { id } = req.params;
-        const { img, productName, category, price, stock } = req.body;
+        console.log('id', id);
 
-        const ProductUpdate = await ProSchema.findByIdAndUpdate({ _id: id }, { img, productName, category, price, stock }, { new: true })
+        const { productName, category, price, stock } = req.body;
+        const img = req.file ? req.file.filename : null;
+
+        let updatedData = { productName, category, price, stock };
+        console.log('updatedData', updatedData);
+
+
+        if (img) {
+            updatedData.img = img;
+        }
+
+        console.log("Data to Update:", updatedData);
+        const ProductUpdate = await ProSchema.findByIdAndUpdate(
+            id,
+            updatedData,
+            { new: true, runValidators: true }
+        );
+
+        if (!ProductUpdate) {
+            return res.status(404).json({ message: "Product not found" });
+        }
+
         res.status(200).json(ProductUpdate);
 
     } catch (error) {

@@ -8,7 +8,7 @@ productRoute.get('/products',productController.GetProdct)
 productRoute.get('/products/:category',productController.GetProductsByCategory)
 productRoute.post('/products',upload.single('img'),productController.PostProduct)
 productRoute.get('/products/:id',productController.ProductId)
-productRoute.put('/products/:id',productController.UpdateProduct)
+productRoute.put('/products/:id',upload.single("img"),productController.UpdateProduct)
 productRoute.delete('/products/:id',productController.DeleteProduct)
 
 
