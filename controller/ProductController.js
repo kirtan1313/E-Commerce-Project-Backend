@@ -28,6 +28,7 @@ const PostProduct = async (req, res) => {
 
     try {
         const { productName, category, price, stock } = req.body;
+        
         const img = req.file.path;
         if (!["Kids", "Men", "Women"].includes(category)) {
             return res.status(400).json({ error: "Invalid category" });

@@ -1,15 +1,14 @@
-const moongose = require('mongoose');
+const mongoose = require('mongoose');
 
-const cartSchema = moongose.Schema({
-
+const cartSchema = new mongoose.Schema({
     products: [{
         img: String,
         productId: String,
-        quantity: Number,
-        price: Number,
-        productName: String
+        quantity: { type: Number, default: 1 },
+        price: { type: Number, required: true },
+        productName: { type: String, required: true }
     }]
-})
+});
 
-const CartProduct = moongose.model('CartProduct', cartSchema)
-module.exports = CartProduct
+const CartProduct = mongoose.model('CartProduct', cartSchema);
+module.exports = CartProduct;
