@@ -1,6 +1,8 @@
 const ProSchema = require('../models/modual.js')
 
 const GetProdct = async (req, res) => {
+    
+    
     try {
         const ProductFind = await ProSchema.find();
         res.status(200).json(ProductFind)

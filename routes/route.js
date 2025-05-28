@@ -8,20 +8,20 @@ const { SignInVaidation, LogInVaidation } = require('../Middleware/AuthValidatio
 const Auth = require('../Middleware/Auth.js')
 
 
-productRoute.get('/products',Auth, productController.GetProdct)
-productRoute.get('/products/:category',Auth, productController.GetProductsByCategory)
-productRoute.post('/products',Auth, upload.single('img'), productController.PostProduct)
-productRoute.get('/products/:id',Auth, productController.ProductId)
-productRoute.put('/products/:id',Auth, upload.single("img"), productController.UpdateProduct)
-productRoute.delete('/products/:id',Auth, productController.DeleteProduct)
+productRoute.get('/products', productController.GetProdct)
+productRoute.get('/products/:category', productController.GetProductsByCategory)
+productRoute.post('/products', upload.single('img'), productController.PostProduct)
+productRoute.get('/products/:id', productController.ProductId)
+productRoute.put('/products/:id', upload.single("img"), productController.UpdateProduct)
+productRoute.delete('/products/:id', productController.DeleteProduct)
 
 
 
 // Cart Product Route
-productRoute.get('/cartPro',Auth, cartProductControler.GetCartProduct)
-productRoute.post('/cartPro',Auth, upload.single("img"), cartProductControler.PostCartProduct)
-productRoute.get('/cartPro/:id',Auth, cartProductControler.GetCartProductId)
-productRoute.delete('/cartPro/:id',Auth, cartProductControler.DeleteProduct)
+productRoute.get('/cartPro', cartProductControler.GetCartProduct)
+productRoute.post('/cartPro', upload.single("img"), cartProductControler.PostCartProduct)
+productRoute.get('/cartPro/:id', cartProductControler.GetCartProductId)
+productRoute.delete('/cartPro/:id', cartProductControler.DeleteProduct)
 
 
 // User Router
