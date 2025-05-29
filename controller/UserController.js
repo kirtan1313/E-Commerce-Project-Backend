@@ -2,14 +2,14 @@ const UserModal = require('../models/User.js')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
-const GetUserLogin = (req, res) => {
-    console.log("Request User", req.body);
-    try {
+// const GetUserLogin = (req, res) => {
+//     console.log("Request User", req.body);
+//     try {
 
-    } catch (error) {
-        res.status(500).json({ message: 'Server error' });
-    }
-}
+//     } catch (error) {
+//         res.status(500).json({ message: 'Server error' });
+//     }
+// }
 
 const PostUserLogin = async (req, res) => {
     try {
@@ -67,12 +67,12 @@ const PostUserSignIn = async (req, res) => {
     }
 }
 
-const GetUserSignIn = (req, res) => {
-    try {
+// const GetUserSignIn = (req, res) => {
+//     try {
 
-    } catch (error) {
-        res.status(500).json({ message: 'Server error' });
-    }
-}
+//     } catch (error) {
+//         res.status(500).json({ message: 'Server error' });
+//     }
+// }
 
-module.exports = { GetUserLogin, PostUserLogin, PostUserSignIn, GetUserSignIn }
+module.exports = {  PostUserLogin, PostUserSignIn,  }

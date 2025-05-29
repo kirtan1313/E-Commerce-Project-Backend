@@ -3,6 +3,7 @@ const productRoute = express.Router();
 const productController = require('../controller/ProductController.js')
 const cartProductControler = require('../controller/CartController.js')
 const UserController = require('../controller/UserController.js')
+const ContactController = require('../controller/ConatctController.js')
 const upload = require('../Multer/multer.js')
 const { SignInVaidation, LogInVaidation } = require('../Middleware/AuthValidation.js')
 const Auth = require('../Middleware/Auth.js')
@@ -26,10 +27,16 @@ productRoute.delete('/cartPro/:id', cartProductControler.DeleteProduct)
 
 // User Router
 
-productRoute.get('/userLogin', UserController.GetUserLogin)
+// productRoute.get('/userLogin', UserController.GetUserLogin)
 productRoute.post('/userLogin', LogInVaidation, UserController.PostUserLogin)
-
-productRoute.get('/userSignIn', UserController.GetUserSignIn)
+// productRoute.get('/userSignIn', UserController.GetUserSignIn)
 productRoute.post('/userSignIn', SignInVaidation, UserController.PostUserSignIn)
+
+
+
+// Conact Router
+
+productRoute.get('/contactForm',ContactController.GetContactController);
+productRoute.post('/contactForm',ContactController.PostContactController);
 
 module.exports = productRoute;
